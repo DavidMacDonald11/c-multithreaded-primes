@@ -1,2 +1,8 @@
+# Ignore ide files
+.vscode
+
 # Ignore complied files
 bin
+
+# Do not ignore
+**/*.keep

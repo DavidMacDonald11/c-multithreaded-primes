@@ -4,7 +4,7 @@ SOURCES := $(wildcard $(patsubst %, %/*.c, src))
 OBJECTS := $(patsubst src%, bin%, $(SOURCES:.c=.o))
 EXE := bin/main
 
-.DEFAULT_GOAL := run
+.DEFAULT_GOAL := all
 
 .git:
 	git init
@@ -20,7 +20,7 @@ run: all
 all: clean $(EXE)
 
 $(EXE): $(OBJECTS)
-	cc $^ -o $@
+	cc $^ -o $@ -lpthread -lm
 	-$(RM) bin/*.o
 
 $(OBJECTS):
@@ -31,6 +31,7 @@ $(OBJECTS):
 .PHONY: clean
 clean:
 	-$(RM) $(EXE)
+	-$(RM) bin/*.o
 
 mem: all
 	valgrind make test
